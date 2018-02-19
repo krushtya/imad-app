@@ -12,7 +12,7 @@ app.get('/', function (req, res) {//'get' request make to '/' so that the given 
 });
 
 app.get('/article1',function(req,res){
-   res.send('This is article one'); 
+   res.sendFile(path.join(_dirname,'ui','article1.html')); 
 });
 
 app.get('/ui/style.css', function (req, res) {
