@@ -1,5 +1,6 @@
-var express = require('express');
-var morgan = require('morgan');
+//source code of web server which actually runs on web server
+var express = require('express');//'express' library is used to create web server.Used for handing http connections,learning how to access                                         ports
+var morgan = require('morgan');//'morgan' library help us output logs of servers that we know what request are comming to a server and how we are responding(i.e how server responds us)
 var path = require('path');
 
 var app = express();
