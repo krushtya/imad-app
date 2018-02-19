@@ -2,10 +2,10 @@ console.log('Loaded!');
 var img = document.getElementById('madi');
 var marginLeft = 0;
 function moveRight(){
-    marginLeft = marginLeft + 10;
+    marginLeft = marginLeft + 1;
     img.style.marginLeft = marginLeft + "px";
 }
 img.onclick = function(){
-    var interval = setInterval(moveRight, 100);//move right in interval 100 ms
+    var interval = setInterval(moveRight, 50);//move right in interval 100 ms
      
 };
