@@ -11,7 +11,7 @@ app.get('/', function (req, res) {//'get' request make to '/' so that the given 
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));//'sendFile' function is used to pickup the file UI/INDEX.HTML which is available to us and we send the content of that file
 });
 
-app.get('/article1',function(req,res){
+app.get('/ui/article1',function(req,res){
    res.sendFile(path.join(__dirname,'ui','article1')); 
 });
 
