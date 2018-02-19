@@ -7,8 +7,12 @@ var path = require('path');
 var app = express();
 app.use(morgan('combined'));
 
-app.get('/', function (req, res) {//'get' request make to '/',the given function is executed
+app.get('/', function (req, res) {//'get' request make to '/' so that the given function is executed
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));//'sendFile' function is used to pickup the file UI/INDEX.HTML which is available to us and we send the content of that file
+});
+
+app.get('/article1',function(req,res){
+   res.send('This is article one'); 
 });
 
 app.get('/ui/style.css', function (req, res) {
