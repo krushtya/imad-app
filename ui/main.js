@@ -30,7 +30,7 @@ button.onclick = function(){
 var nameInput=document.getElementById('name');
 var name=nameInput.value;
 var submit=document.getElementById('submit_btn');
-submit.onclick = function(){
+submit.onload = function(){
    // make a request to a serer and send the name
    
    //capture a list of names and render it as a list 
