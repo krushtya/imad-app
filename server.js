@@ -32,6 +32,16 @@ app.get('/counter',function(req,res){
     counter=counter+1;
     res.send(counter.toString());
 });
+
+var names=[];
+app.get('/submit-name/:name',function(req,res){  //'Express' framework some data is copied from URL(here name)
+   //get the namw from the reqest
+   var name=req.params.name;
+   
+   names.push(name);
+   //JSON: Javascript Object Notation
+   res.send(JSON.stringify(names)); // since res.send accepts string the array 'names' is converted into strings using JSON
+});
 // Do not change port, otherwise your app won't run on IMAD servers
 // Use 8080 only for local development if you already have apache running on 80
 
