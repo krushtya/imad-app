@@ -52,9 +52,10 @@ submit.onclick = function(){
                       }
                       var ul =document.getElementById('namelist');//'namelist' id ia taken from index.html file
                         ul.innerHTML = list;
+               }        
             }
         //not done yet
-    }
+    };
     
     //make the request
     request.open('GET','http://u2016pritamkore.imad.hasura-app.io/submit-btn'+ name ,true);
