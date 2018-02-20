@@ -27,6 +27,7 @@ button.onclick = function(){
 };
 
 //submit name
+window.onload=function(){
 var nameInput=document.getElementById('name');
 var name=nameInput.value;
 var submit=document.getElementById('submit_btn');
@@ -41,4 +42,5 @@ submit.onload = function(){
      }
     var ul=document.getElementById('namelist');
     ul.innerHTML = list;
+};
 };
