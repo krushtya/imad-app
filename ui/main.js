@@ -28,17 +28,16 @@ button.onclick = function(){
 
 //submit name
 
-var nameInput=document.getElementById('name');
-var name=nameInput.value;
+
 var submit=document.getElementById('submit-btn');
-submit.onclick = function(){
-   // make a request to a server and send the name
+submit.onclick = function(){     // make a request to a server and send the name
+  
    
-   //create a request object ( //Request are like open,get,post etc.)
+   //1.create a request object ( //Request are like open,get,post etc.)
     var request=new XMLHttpRequest();
     
     
-    //capture the response and store it in a variable
+    //3.capture the response and store it in a variable
     request.onreadystatechange = function(){
         if(request.readyState === XMLHttpRequest.DONE){
             //take some action
@@ -59,7 +58,9 @@ submit.onclick = function(){
         //not done yet
     };
     
-    //make the request
+    //2.make the request
+    var nameInput=document.getElementById('name');
+    var name=nameInput.value;
     request.open('GET','http://u2016pritamkore.imad.hasura-app.io/submit-btn?name='+ name ,true);
     request.send(null);
    };
