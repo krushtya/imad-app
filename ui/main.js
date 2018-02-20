@@ -18,7 +18,7 @@
         </div>
         </div>
         <script>
-            alert('hii I\'m your assistant');//inline scripting
+            alert('hii I\'m your assistant');//inlin1e scripting
         </script>
         <script type="text/javascript" src="/ui/main.js">
         </script>
