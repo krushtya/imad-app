@@ -58,6 +58,6 @@ submit.onclick = function(){
     };
     
     //make the request
-    request.open('GET','http://u2016pritamkore.imad.hasura-app.io/submit-btn'+ name ,true);
+    request.open('GET','http://u2016pritamkore.imad.hasura-app.io/submit-btn?name='+ name ,true);
     request.send(null);
    };
