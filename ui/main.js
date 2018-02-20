@@ -11,10 +11,14 @@ function moveLeft(){
     img.style.marginRight = marginRight + "px";//concatnation
 }
 img.onclick = function(){
-    if(marginLeft ===0)
+        if(marginLeft===0)
+   { while(marginRight !==0)
      interval = setInterval(moveRight, 50);//move right in interval 50 ms
+     }
     if(marginRight===0)
+    {
+        while(marginLeft !==0)
         interval = setInterval(moveLeft, 50);//move left in interval 50 ms 
     
-     
+    }
 };
