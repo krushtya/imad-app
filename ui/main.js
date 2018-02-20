@@ -61,6 +61,6 @@ submit.onclick = function(){     // make a request to a server and send the name
     //2.make the request
     var nameInput=document.getElementById('name');
     var name=nameInput.value;
-    request.open('GET','http://u2016pritamkore.imad.hasura-app.io/submit-btn?name='+ name ,true);
+    request.open('GET','http://u2016pritamkore.imad.hasura-app.io/submit-name?name='+ name ,true);
     request.send(null);
    };
