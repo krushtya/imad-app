@@ -23,7 +23,7 @@ button.onclick = function(){
     
     //make the request
     request.open('GET','http://u2016pritamkore.imad.hasura-app.io/counter',true);
-    request.send();
+    request.send(null);
 };
 
 //submit name
