@@ -44,12 +44,14 @@ submit.onclick = function(){
             //take some action
             if(request.status === 200){     //request is succesful
                 //capture a list of names and render it as a list 
-                    var names=['name1','name2','name3'];
+                    var names =request.responseText;
+                    names = JSON.parse(names);
                     var list ='';
                      for(var i=0;i<names.length;i++)
                      {
                       list += '<li>'+names[i]+'</li>';
                       }
+                      //render the list of names
                       var ul =document.getElementById('namelist');//'namelist' id ia taken from index.html file
                         ul.innerHTML = list;
                }        
