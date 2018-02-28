@@ -4,6 +4,17 @@ var express = require('express');//'express' library is used to create web serve
 var morgan = require('morgan');//'morgan' library help us output logs of servers that we know what request are comming to a server and how we are responding(i.e how server responds us)
 var path = require('path');
 
+//to connect to postgres-db, we require the following things
+var Pool=require('pg').Pool;//to create an instance of pool (for more information goto "https://github.com/brianc/node-pg-pool")
+
+var config= {
+  user:'u2016pritamkore',
+  database:'u2016pritamkore',
+  host:'db.imad.hasura-app.io',
+  port:'5432',
+  password:process.env.DB_PASSWORD    //environment variable:'DB_PASSWORD', To acsess the env. variable use 'process.env'
+};
+
 var app = express();
 app.use(morgan('combined'));
 
@@ -11,7 +22,9 @@ app.get('/', function (req, res) {//'get' request make to '/' so that the given 
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));//'sendFile' function is used to pickup the file UI/INDEX.HTML which is available to us and we send the content of that file
 });
 
-app.get('/test-db',function(req,res){
+//connecting postgress-database to js
+//for more information goto-"https://node-postgres.com/features/connecting"
+app.get('/test-db',function(req,res){       
     //make a select request
     //return a response with the result
 });
