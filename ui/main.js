@@ -51,7 +51,7 @@ submit.onclick = function(){     // make a request to a server and send the name
                       list += '<li>'+names[i]+'</li>';
                       }
                       //render the list of names
-                      var ul =document.getElementById('namelist');//'namelist' id ia taken from index.html file
+                      var ul =document.getElementById('namelist');//'namelist' id is taken from index.html file
                         ul.innerHTML = list;
                }        
             }
