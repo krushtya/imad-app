@@ -24,9 +24,21 @@ app.get('/', function (req, res) {//'get' request make to '/' so that the given 
 
 //connecting postgress-database to js
 //for more information goto-"https://node-postgres.com/features/connecting"
+
+  
+    /*connection pool is created outside server request
+      last for as long as your app is running */
+var pool=new Pool(config);  //see config variable above
 app.get('/test-db',function(req,res){       
     //make a select request
     //return a response with the result
+    pool.query('SELECT * FROM test', function(err,result){       //'test' is the table created in 'http://db.imad.hasura-app.io'
+        if(err){
+            res.status(500).send(err.toString());
+        } else{
+            res.send(JSON.stringify(result));
+        }
+    });                              
 });
 
 app.get('/ui/article1',function(req,res){
