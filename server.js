@@ -45,16 +45,16 @@ app.get('/ui/article1',function(req,res){
    res.sendFile(path.join(__dirname,'ui','article1.html')); 
 });
 var pool=new Pool(config);
-app.get('/articles',function(req,res){
+app.get('/articles/:articleName',function(req,res){
    //articleName==article_name
    //articles[articleName]=={} content object for article_name
              //SELCT * FROM article WHERE title= 'article_name'
-   pool.query('SELECT * FROM article', function(err,result){
+   pool.query("SELECT * FROM article WHERE title='"+req.params.articleName+"'", function(err,result){
        if(err){
            res.status(500).send(err.toString());
        }
        else{
-           if(res.rows.length===0){
+           if(result.rows.length===0){
                res.status(404).send('Article not found');
            }else{
                var articleData=result.rows[0];
@@ -62,6 +62,7 @@ app.get('/articles',function(req,res){
            }
        }
    });
+   res.send(createTemplate(articleData));
 });
 
 app.get('/about',function(req,res){
