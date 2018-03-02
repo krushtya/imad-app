@@ -45,7 +45,7 @@ app.get('/ui/article1',function(req,res){
    res.sendFile(path.join(__dirname,'ui','article1.html')); 
 });
 
-app.get('/articles/:articleName',function(req,res){
+app.get('/articles',function(req,res){
    //articleName==article_name
    //articles[articleName]=={} content object for article_name
              //SELCT * FROM article WHERE title= 'article_name'
