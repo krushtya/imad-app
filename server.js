@@ -57,8 +57,8 @@ app.get('/articles',function(req,res){
            if(res.rows.length===0){
                res.status(404).send('Article not found');
            }else{
-               var articleData=result.rows[0];
-               res.send(createTemplate(articleData));
+                           res.send(JSON.stringify(result.rows));
+
            }
        }
    });
