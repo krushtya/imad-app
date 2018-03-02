@@ -12,7 +12,7 @@ var config= {
   database:'u2016pritamkore',
   host:'db.imad.hasura-app.io',
   port:'5432',
-  password:process.env.DB_PASSWORD    //environment variable:'DB_PASSWORD', To acsess the env. variable use 'process.env'
+  password:process.env.DB_PASSWORD    //environment variable:'DB_PASSWORD'. To acsess the env. variable use 'process.env'
 };
 
 var app = express();
