@@ -62,7 +62,6 @@ app.get('/articles/:articleName',function(req,res){
            }
        }
    });
-   res.send(createTemplate(articleData));
 });
 
 app.get('/about',function(req,res){
