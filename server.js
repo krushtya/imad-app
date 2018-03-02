@@ -48,8 +48,8 @@ app.get('/ui/article1',function(req,res){
 app.get('/articles/:articleName',function(req,res){
    //articleName==article_name
    //articles[articleName]=={} content object for article_name
-             //SELCT * FROM article WHERE title= article_name
-   pool.query('SELECT * FROM article WHERE title= '+req.params.articleName+function(err,result){
+             //SELCT * FROM article WHERE title= 'article_name'
+   pool.query("SELECT * FROM article WHERE title= article1",function(err,result){
        if(err){
            res.status(500).send(err.toString());
        }
