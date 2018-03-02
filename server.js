@@ -54,13 +54,15 @@ app.get('/articles',function(req,res){
            res.status(500).send(err.toString());
        }
        else{
-          
+           if(res.rows.length===0){
+               res.status(404).send('Article not found');
+           }else{
                var articleData=result.rows[0];
                res.send(createTemplate(articleData));
            }
-       });
+       }
    });
-
+});
 
 app.get('/ui/style.css', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'style.css'));
