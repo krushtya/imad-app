@@ -29,7 +29,7 @@ app.get('/', function (req, res) {//'get' request make to '/' so that the given 
     /*connection pool is created outside server request
       last for as long as your app is running */
   //see config variable above
-app.get('/test-db',function(req,res){       
+/*p.get('/test-db',function(req,res){       
     //make a select request
     //return a response with the result
     pool.query('SELECT * FROM test', function(err,result){       //'test' is the table created in 'http://db.imad.hasura-app.io'
@@ -40,7 +40,7 @@ app.get('/test-db',function(req,res){
         }
     });                              
 });
-
+*/
 app.get('/ui/article1',function(req,res){
    res.sendFile(path.join(__dirname,'ui','article1.html')); 
 });
