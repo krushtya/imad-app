@@ -41,8 +41,8 @@ app.get('/test-db',function(req,res){
     });                              
 });
 
-app.get('/ui/article1',function(req,res){
-   res.sendFile(path.join(__dirname,'ui','article1.html')); 
+app.get('/ui/article-one',function(req,res){
+   res.sendFile(path.join(__dirname,'ui','article-one.html')); 
 });
 var pool=new Pool(config);
 app.get('/articles/:articleName',function(req,res){
