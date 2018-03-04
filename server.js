@@ -60,7 +60,7 @@ var htmltemplate=`
 
 </html>
 
-`;
+`
 return htmltemplate;
 }
 //connecting postgress-database to js
