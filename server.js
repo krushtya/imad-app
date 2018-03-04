@@ -61,7 +61,7 @@ var htmltemplate=`
 </html>
 
 `;
-return htmlTemplate;
+return htmltemplate;
 }
 //connecting postgress-database to js
 //for more information goto-"https://node-postgres.com/features/connecting"
