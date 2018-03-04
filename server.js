@@ -22,6 +22,47 @@ app.get('/', function (req, res) {//'get' request make to '/' so that the given 
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));//'sendFile' function is used to pickup the file UI/INDEX.HTML which is available to us and we send the content of that file
 });
 
+var articleOne={        //creating object
+  title:'Article-one|Pritam Kore',
+  heading:'Article-One',
+  date:'Sep 5, 2017',
+  content:'Making the Most of Being at Home. We are all guilty of overlooking the gems that are on our own doorsteps at times. Sometimes the best experiences can be right under our noses but we don\'t discover them because we\'re too busy getting on with our everyday live'
+};
+
+function createTemplate (data){  //'data' is object
+var title=data.title;
+var date=data.date;
+var content=data.content;
+var heading=data.heading;
+var htmltemplate=`
+<html>
+    <head>  
+   <title>
+      ${title}
+   </title>
+   <meta name="viewport" content="width=device-width, initial-scale=1">  //used for mobile browser 
+   <link href="/ui/style.css" rel="stylesheet" />
+   
+</head>
+<body>
+    <div class="container">
+    <div>
+        <a href="/">Home</a>
+    </div>
+    <hr/>
+    <h3>${heading}</h3>
+     <div>
+        ${date}
+        </div>
+        ${content}
+    </div>
+</body>
+
+</html>
+
+`;
+return htmlTemplate;
+}
 //connecting postgress-database to js
 //for more information goto-"https://node-postgres.com/features/connecting"
 
@@ -41,8 +82,8 @@ app.get('/test-db',function(req,res){
     });                              
 });
 
-app.get('/ui/article-one',function(req,res){
-   res.sendFile(path.join(__dirname,'ui','article-one.html')); 
+app.get('/tp/article-one',function(req,res){
+   res.send(createTemplate(articleOne)); 
 });
 var pool=new Pool(config);
 app.get('/articles/:articleName',function(req,res){
