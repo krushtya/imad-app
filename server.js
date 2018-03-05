@@ -29,7 +29,7 @@ function hash(input,salt){
     //how do we create hash password. For more information goto:'https://nodejs.org/api/crypto.html#crypto_crypto_pbkdf2sync_password_salt_iterations_keylen_digest'
     
     var hashed=crypto.pbkdf2Sync(input,salt,100000,512,'sha512');     //"pbkdf2(Password-Based Key Derivation Function 2)"
-    return ["pbkdf2Sync","10000",salt,hashed.toString('hex')];
+    return ["pbkdf2Sync","10000",salt,hashed.toString('hex')].join('$');
 }
 
 app.get('/hash/:input',function(req,res){
