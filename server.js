@@ -20,7 +20,7 @@ var config= {
 var app = express();
 app.use(morgan('combined'));
 
-app.get('/', function (err, res) {//'get' request make to '/' so that the given function is executed
+app.get('/', function (req, res) {//'get' request make to '/' so that the given function is executed
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));//'sendFile' function is used to pickup the file UI/INDEX.HTML which is available to us and we send the content of that file
 });
 
@@ -32,7 +32,7 @@ function hash(input,salt){
     return hashed.toString('hex');
 }
 
-app.get('/hash/:input',function(err,res){
+app.get('/hash/:input',function(req,res){
     var hashstring= hash(req.params.input,'this-is-some-random-string');
     res.send(hashstring);
 });
