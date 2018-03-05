@@ -1,11 +1,13 @@
 //source code of web server, which actually runs on web server
 //software packages
+//'require' method is used to declare variables from library (mostly 'nodejs' library)
 var express = require('express');//'express' library is used to create web server.Used for handling http connections,learning how to access                                         ports.All are defined here
 var morgan = require('morgan');//'morgan' library help us output logs of servers that we know what request are comming to a server and how we are responding(i.e how server responds us)
 var path = require('path');
 
 //to connect to postgres-db, we require the following things
 var Pool=require('pg').Pool;//to create an instance of pool (for more information goto "https://github.com/brianc/node-pg-pool")
+var crypto=require('crypto');
 
 var config= {
   user:'u2016pritamkore',
@@ -21,6 +23,20 @@ app.use(morgan('combined'));
 app.get('/', function (req, res) {//'get' request make to '/' so that the given function is executed
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));//'sendFile' function is used to pickup the file UI/INDEX.HTML which is available to us and we send the content of that file
 });
+
+//code for hash password
+function hash(input){
+    //how do we create hash password. For more information goto:'https://nodejs.org/api/crypto.html#crypto_crypto_pbkdf2sync_password_salt_iterations_keylen_digest'
+    
+    var hashed=crypto.pbkdf2Sync();
+}
+
+app.get('/hash/:input',function(err,res){
+    var hashstring= hash(req.params.input);
+    res.send(hashstring);
+});
+
+
 
 var articleOne={        //creating object
   title:'Article-one|Pritam Kore',
@@ -69,7 +85,8 @@ return htmltemplate;
   
     /*connection pool is created outside server request
       last for as long as your app is running */
-  //see config variable above
+      //code for database
+  //see 'config' variable above
 app.get('/test-db',function(req,res){       
     //make a select request
     //return a response with the result
@@ -86,11 +103,11 @@ app.get('/tp/article-one',function(req,res){
    res.send(createTemplate(articleOne)); 
 });
 var pool=new Pool(config);
-app.get('/articles/:articleName',function(req,res){
+app.get('/articles/:articleName',function(req,res){               //":" is used to take input from URL  
    //articleName==article_name
    //articles[articleName]=={} content object for article_name
              //SELCT * FROM article WHERE title= 'article-one'
-   pool.query("SELECT * FROM article WHERE title='"+req.params.articleName+"'", function(err,result){
+   pool.query("SELECT * FROM article WHERE title='"+req.params.articleName+"'", function(err,result){      //"req.params.articleName" is used which represents actual data in the code
        if(err){
            res.status(500).send(err.toString());
        }
