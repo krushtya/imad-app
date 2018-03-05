@@ -37,7 +37,17 @@ app.get('/hash/:input',function(req,res){
     res.send(hashstring);
 });
 
-
+app.get('/create-user',function(req,res){
+    var salt=crypto.getRandomBytes(128).toString('hex');
+    var dbstring=hash(password,salt);
+    pool.query('INSERT INTO "user" (username,password) VALUES($1,$2)',[username,dbstring],function(err,result){
+          if(err){
+            res.status(500).send(err.toString());
+        } else{
+            res.send('User successfully created'+ username);
+        }
+    });
+});
 
 var articleOne={        //creating object
   title:'Article-one|Pritam Kore',
