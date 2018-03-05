@@ -25,14 +25,15 @@ app.get('/', function (req, res) {//'get' request make to '/' so that the given 
 });
 
 //code for hash password
-function hash(input){
+function hash(input,salt){
     //how do we create hash password. For more information goto:'https://nodejs.org/api/crypto.html#crypto_crypto_pbkdf2sync_password_salt_iterations_keylen_digest'
     
-    var hashed=crypto.pbkdf2Sync();
+    var hashed=crypto.pbkdf2Sync(input,salt,100000,512,'sha512');
+    return hashed.toString('hex');
 }
 
 app.get('/hash/:input',function(err,res){
-    var hashstring= hash(req.params.input);
+    var hashstring= hash(req.params.input,'this-is-some-random-string');
     res.send(hashstring);
 });
 
