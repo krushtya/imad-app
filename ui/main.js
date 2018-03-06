@@ -127,8 +127,8 @@ submit.onclick = function(){     // make a request to a server and send the name
     //2.make the request
     var username=document.getElementById('username').value;
     var password=document.getElementById('password').value;
-    console.log('username');
-    console.log('password');
+    console.log(username);
+    console.log(password);
     request.open('POST','http://u2016pritamkore.imad.hasura-app.io/login' ,true);
     request.setRequestHeader('Content-type','application/json');   //same did it in ssh,curl command (for more info goto:'ThisPC/Pictures/imp_for_imad_ssh')
     request.send(JSON.stringify({username:username,password:password}));
