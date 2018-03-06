@@ -23,7 +23,7 @@ var app = express();
 app.use(morgan('combined'));
 app.use(bodyparser.json());   //We need to tell our express app that in case you see json content, load the json content in the req.body variablle(used in /create-user)
 app.use(session({
-    secret:'somerandomSecretvalue',
+    secret:'someRandomSecretValue',
     cookie:{maxAge:1000*60*60*24*30}
 }));
 
@@ -84,13 +84,14 @@ app.post('/login',function(req,res){
                 if(hashpassword===dbstring){
                     
                     
-                     res.send('User successfully logged in');
+                 
             
                   //set a session
                   req.session.auth={userId:result.rows[0].id};
                   //set cookie with session id
                   //internally, on the server side, it maps the session id to an object
                   //{auth:{userId}}
+                      res.send('User successfully logged in');
                 }else{
                    res.send(403).send('username/password is invalid'); 
                 }
