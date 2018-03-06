@@ -77,7 +77,9 @@ app.post('/login',function(req,res){
                 var salt=dbstring.split('/')[2];
                 var hashpassword=hash(password,salt);
                 if(hashpassword===dbstring){
-            res.send('User successfully logged in');
+                     res.send('User successfully logged in');
+            
+                  //set a session
                 }else{
                    res.send(403).send('username/password is invalid'); 
                 }
