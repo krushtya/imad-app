@@ -9,6 +9,7 @@ var path = require('path');
 var Pool=require('pg').Pool;//to create an instance of pool (for more information goto "https://github.com/brianc/node-pg-pool")
 var crypto=require('crypto');
 var bodyparser=require('body-parser');
+var session=require('express-session');  //used for cookies
 
 var config= {
   user:'u2016pritamkore',
@@ -21,6 +22,10 @@ var config= {
 var app = express();
 app.use(morgan('combined'));
 app.use(bodyparser.json());   //We need to tell our express app that in case you see json content, load the json content in the req.body variablle(used in /create-user)
+app.use(session({
+    secret:'somerandomSecretvalue',
+    cookie:{maxAge:1000*60*60*24*30}
+}));
 
 
 //Know about 'function(req,res) goto:"https://stackoverflow.com/questions/4696283/what-are-res-and-req-parameters-in-express-functions"'
@@ -77,6 +82,8 @@ app.post('/login',function(req,res){
                 var salt=dbstring.split('/')[2];
                 var hashpassword=hash(password,salt);
                 if(hashpassword===dbstring){
+                    
+                    
                      res.send('User successfully logged in');
             
                   //set a session
