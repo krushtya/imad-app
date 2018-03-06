@@ -87,12 +87,24 @@ app.post('/login',function(req,res){
                      res.send('User successfully logged in');
             
                   //set a session
+                  req.session.auth={userId:result.rows[0].id};
+                  //set cookie with session id
+                  //internally, on the server side, it maps the session id to an object
+                  //{auth:{userId}}
                 }else{
                    res.send(403).send('username/password is invalid'); 
                 }
             }
         }
     });
+});
+
+app.get('/check-login',function(req,res){
+   if(req.session && req.session.auth && req.session.auth.userId){
+       res.send('You are login'+req.session.auth.userId.toString());
+   } else{
+       res.send('You are not logged in');
+   }
 });
 
 var articleOne={        //creating object
