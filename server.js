@@ -1,4 +1,4 @@
-//source code of web server, which actually runs on web server
+//This is source code of web server, which actually runs on web server
 //software packages
 //'require' method is used to declare variables from library (mostly 'nodejs' library)
 var express = require('express');//'express' library is used to create web server.Used for handling http connections,learning how to access                                         ports.All are defined here
@@ -8,6 +8,7 @@ var path = require('path');
 //to connect to postgres-db, we require the following things
 var Pool=require('pg').Pool;//to create an instance of pool (for more information goto "https://github.com/brianc/node-pg-pool")
 var crypto=require('crypto');
+var bodyparser=require('body-parser');
 
 var config= {
   user:'u2016pritamkore',
@@ -19,7 +20,10 @@ var config= {
 
 var app = express();
 app.use(morgan('combined'));
+app.use(bodyparser.json());   //We need to tell our express app that in case you see json content, load the json content in the req.body variablle(used in /create-user)
 
+
+//Know about 'function(req,res) goto:"https://stackoverflow.com/questions/4696283/what-are-res-and-req-parameters-in-express-functions"'
 app.get('/', function (req, res) {//'get' request make to '/' so that the given function is executed
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));//'sendFile' function is used to pickup the file UI/INDEX.HTML which is available to us and we send the content of that file
 });
@@ -37,7 +41,10 @@ app.get('/hash/:input',function(req,res){
     res.send(hashstring);
 });
 
-app.get('/create-user',function(req,res){
+app.post('/create-user',function(req,res){
+    
+    var username=req.body.username;  //JSON request
+    var password=req.body.password;  //JSON request
     var salt=crypto.getRandomBytes(128).toString('hex');
     var dbstring=hash(password,salt);
     pool.query('INSERT INTO "user" (username,password) VALUES($1,$2)',[username,dbstring],function(err,result){
