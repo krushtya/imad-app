@@ -43,9 +43,12 @@ app.get('/hash/:input',function(req,res){
 
 app.post('/create-user',function(req,res){
     
-    var username=req.body.username;  //JSON request
+    //concept of curl is used
+    
+    //["username":"pritam", "password":"password"]  <= JSON object 
+    var username=req.body.username;  //JSON request(JSON object is converted into username and password)
     var password=req.body.password;  //JSON request
-    var salt=crypto.getRandomBytes(128).toString('hex');
+    var salt=crypto.RandomBytes(128).toString('hex');
     var dbstring=hash(password,salt);
     pool.query('INSERT INTO "user" (username,password) VALUES($1,$2)',[username,dbstring],function(err,result){
           if(err){
