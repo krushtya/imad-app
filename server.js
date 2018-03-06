@@ -59,6 +59,33 @@ app.post('/create-user',function(req,res){
     });
 });
 
+app.post('/login',function(req,res){
+    var username=req.body.username;  //JSON request(JSON object is converted into username and password)
+    var password=req.body.password;  //JSON request
+   
+    pool.query('SELECT FROM "user" WHERE username =$1',[username],function(err,result){
+          if(err){
+            res.status(500).send(err.toString());
+        } else{
+            if(result.rows.length===0){
+                 res.send(403).send('username/password is invalid');  //"403" =>'forbidden request'
+                
+            }
+            else{
+                //Match the password
+                var dbstring=result.rows[0].password;
+                var salt=dbstring.split('/')[2];
+                var hashpassword=hash(password,salt);
+                if(hashpassword===dbstring){
+            res.send('User successfully logged in');
+                }else{
+                   res.send(403).send('username/password is invalid'); 
+                }
+            }
+        }
+    });
+});
+
 var articleOne={        //creating object
   title:'Article-one|Pritam Kore',
   heading:'Article-One',
